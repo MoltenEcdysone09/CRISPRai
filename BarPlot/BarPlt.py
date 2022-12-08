@@ -54,7 +54,7 @@ def SubsetDF(heho, conc, actinh):
     #print(pltdf)
     return pltdf
 
-def gfpexp(CA, r_P_RA, r_P_RI, b_RatAI, b_SxA, b_A):
+def gfpexp(CA, r_P_RA, r_P_RI, b_RatAI, b_SxA, b_A, b_I):
     # Estimated
     # Estimated paramters from hills fitting
     copA = 1.598
@@ -76,7 +76,7 @@ def gfpexp(CA, r_P_RA, r_P_RI, b_RatAI, b_SxA, b_A):
     # CA - incorporating binding and production rates
     CA = CA*r_P_RA*b_RA*b_SxA*b_A
     # CI - incorporating binding and production rates
-    CI = CI*r_P_RI*b_RI
+    CI = CI*r_P_RI*b_RI*b_I
     # The ARA related term
     AraResp = C0A +  G*(CA**copA/(thrA**copA + CA**copA))
     # AHL related term
@@ -106,9 +106,9 @@ def fitPlot(ConcenI, heho):
 
     # Generating points based on qualitative parameters
     if heho[:3] == "Hom":
-        x_est = [gfpexp(i, r_P_RA=1, r_P_RI=1, b_RatAI=1, b_SxA=1, b_A=1) for i in [y[0], y[-1]]]
+        x_est = [gfpexp(i, r_P_RA=1, r_P_RI=1, b_RatAI=1, b_SxA=1, b_A=1, b_I=1) for i in [y[0], y[-1]]]
     else:
-        x_est = [gfpexp(i, r_P_RA=1, r_P_RI=1, b_RatAI=10, b_SxA=1, b_A=1) for i in [y[0], y[-1]]]
+        x_est = [gfpexp(i, r_P_RA=1, r_P_RI=1, b_RatAI=10, b_SxA=1, b_A=1, b_I=10) for i in [y[0], y[-1]]]
 
     return x_est
 
@@ -148,4 +148,3 @@ g.legend(loc="upper right", bbox_to_anchor=(1.25, 1))
 plt.tight_layout()
 plt.savefig("fit.png")
 plt.show()
-
