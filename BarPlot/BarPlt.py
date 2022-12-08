@@ -106,9 +106,9 @@ def fitPlot(ConcenI, heho):
 
     # Generating points based on qualitative parameters
     if heho[:3] == "Hom":
-        x_est = [gfpexp(i, r_P_RA=1, r_P_RI=1, b_RatAI=1, b_SxA=1, b_A=1, b_I=1) for i in [y[0], y[-1]]]
+        x_est = [gfpexp(i, r_P_RA=1.41, r_P_RI=7.53, b_RatAI=7.73, b_SxA=0.6, b_A=0.7, b_I=1) for i in [y[0], y[-1]]]
     else:
-        x_est = [gfpexp(i, r_P_RA=1, r_P_RI=1, b_RatAI=10, b_SxA=1, b_A=1, b_I=10) for i in [y[0], y[-1]]]
+        x_est = [gfpexp(i, r_P_RA=1.41, r_P_RI=7.53, b_RatAI=7.73, b_SxA=1, b_A=0.7, b_I=7.17) for i in [y[0], y[-1]]]
 
     return x_est
 
@@ -148,3 +148,4 @@ g.legend(loc="upper right", bbox_to_anchor=(1.25, 1))
 plt.tight_layout()
 plt.savefig("fit.png")
 plt.show()
+
